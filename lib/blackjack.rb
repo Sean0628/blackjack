@@ -3,6 +3,10 @@ require './lib/player'
 require './lib/dealer'
 
 class BlackJack
+  def self.run
+    self.new.run
+  end
+
   def initialize
     @deck = Deck.new
     @player = Player.new
@@ -36,7 +40,7 @@ class BlackJack
       dealer_burst?(@dealer.score)
     end
 
-    # 両者ドロー修理後の処理
+    # 両者がカードを引き終えた時の処理
     puts "あなたの合計得点は#{@player.score}です"
     puts "ディーラーの合計得点は#{@dealer.score}です"
     if @player.score > @dealer.score
@@ -73,5 +77,6 @@ class BlackJack
   end
 end
 
-app = BlackJack.new
-app.run
+if $0 == __FILE__
+  BlackJack.run
+end
