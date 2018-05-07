@@ -1,6 +1,8 @@
 require './lib/card'
 
 class Deck
+  MARKS = %w(ハート スペード ダイヤ クラブ)
+  NUMBERS = [*1..13]
   def initialize
     @cards = []
     generate_deck
@@ -13,8 +15,8 @@ class Deck
   end
 
   def generate_deck
-    ['ハート', 'スペード', 'ダイヤ', 'クラブ'].each do |mark|
-      (1..13).each do |num|
+    MARKS.each do |mark|
+      NUMBERS.each do |num|
         @cards.push(Card.new(mark, num))
         @cards.shuffle!
       end

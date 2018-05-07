@@ -62,7 +62,7 @@ class BlackJack
       elsif input == 'no'
         break
       else
-        puts "不正な値です"
+        puts '不正な値です'
       end
     end
   end
