@@ -20,6 +20,7 @@ class BlackJack
     puts_blank_line
     init_app
     show_score(score: @player.score)
+    puts_blank_line
     player_draws
     dealer_draws
     return_result
@@ -36,7 +37,7 @@ class BlackJack
 
   def player_burst?(score)
     if score > 21
-      puts "カードの合計が21を超えました\n\nあなたの負けです"
+      puts_burst_message('負け')
       puts_last_message
       exit
     end
@@ -44,7 +45,7 @@ class BlackJack
 
   def dealer_burst?(score)
     if score > 21
-      puts "カードの合計が21を超えました\n\nあなたの勝ちです"
+      puts_burst_message('勝ち')
       puts_last_message
       exit
     end
@@ -97,6 +98,10 @@ class BlackJack
   def puts_last_message
     puts_blank_line
     puts '---------- Thank you. Bye! ----------'
+  end
+
+  def puts_burst_message(result)
+    puts "カードの合計が21を超えました\n\nあなたの#{result}です"
   end
 end
 
