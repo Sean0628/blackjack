@@ -19,11 +19,11 @@ class BlackJack
     puts 'ゲームを開始します'
     puts_blank_line
     init_app
-    puts "あなたの合計得点は#{@player.score}です"
+    show_score(score: @player.score)
     player_draws
     dealer_draws
     return_result
-    puts '---------- Thank you. Bye! ----------'
+    puts_last_message
   end
 
   private
@@ -34,20 +34,18 @@ class BlackJack
     2.times { @dealer.draw(@deck) }
   end
 
-  def puts_blank_line
-    puts
-  end
-
   def player_burst?(score)
     if score > 21
-      puts "カードの合計が21を超えました\nあなたの負けです"
+      puts "カードの合計が21を超えました\n\nあなたの負けです"
+      puts_last_message
       exit
     end
   end
 
   def dealer_burst?(score)
     if score > 21
-      puts "カードの合計が21を超えました\nあなたの勝ちです"
+      puts "カードの合計が21を超えました\n\nあなたの勝ちです"
+      puts_last_message
       exit
     end
   end
@@ -58,7 +56,7 @@ class BlackJack
     input = gets.chomp.downcase
       if input == 'yes'
         @player.draw(@deck)
-        puts "あなたの合計得点は#{@player.score}です"
+        show_score(score: @player.score)
         player_burst?(@player.score)
       elsif input == 'no'
         break
@@ -71,15 +69,14 @@ class BlackJack
   def dealer_draws
     while @dealer.score <= 17
       @dealer.draw(@deck)
-      puts "ディーラーの合計得点は#{@dealer.score}です"
+      show_score(who: 'ディーラー', score: @dealer.score)
       puts_blank_line
       dealer_burst?(@dealer.score)
     end
   end
 
   def return_result
-    puts "あなたの合計得点は#{@player.score}です"
-    puts "ディーラーの合計得点は#{@dealer.score}です"
+    show_score(who: 'ディーラー', score: @dealer.score)
     if @player.score > @dealer.score
       puts 'あなたの勝ちです'
     elsif @player.score < @dealer.score
@@ -87,6 +84,19 @@ class BlackJack
     else
       puts '引き分けです'
     end
+  end
+
+  def show_score(who: 'あなた', score:)
+    puts "#{who}の合計得点は#{score}です"
+  end
+
+  def puts_blank_line
+    puts
+  end
+
+  def puts_last_message
+    puts_blank_line
+    puts '---------- Thank you. Bye! ----------'
   end
 end
 
