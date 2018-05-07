@@ -17,12 +17,13 @@ class BlackJack
     puts '---------- Welcome to Blackjack ----------'
     puts_blank_line
     puts 'ゲームを開始します'
+    puts_blank_line
     init_app
     puts "あなたの合計得点は#{@player.score}です"
 
     loop do
     puts 'カードを引きますか？(yes/no)'
-      input = gets.chomp
+    input = gets.chomp.downcase
       if input == 'yes'
         @player.draw(@deck)
         puts "あなたの合計得点は#{@player.score}です"
@@ -37,6 +38,7 @@ class BlackJack
     while @dealer.score <= 17
       @dealer.draw(@deck)
       puts "ディーラーの合計得点は#{@dealer.score}です"
+      puts_blank_line
       dealer_burst?(@dealer.score)
     end
 
@@ -55,6 +57,7 @@ class BlackJack
 
   def init_app
     2.times { @player.draw(@deck) }
+    puts_blank_line
     2.times { @dealer.draw(@deck) }
   end
 

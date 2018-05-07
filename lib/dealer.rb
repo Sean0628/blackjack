@@ -8,7 +8,7 @@ class Dealer
 
   def draw(deck)
     picked_card = deck.draw_card
-    @hands.push(deck.draw_card)
+    @hands.push(picked_card)
     if @hands.count == 2
       puts 'ディーラーの２枚目のカードはわかりません'
     else
