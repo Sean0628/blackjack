@@ -3,6 +3,7 @@ require './lib/card'
 class Deck
   MARKS = %w(ハート スペード ダイヤ クラブ)
   NUMBERS = [*1..13]
+
   def initialize
     @cards = []
     generate_deck
