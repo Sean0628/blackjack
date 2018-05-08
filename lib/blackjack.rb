@@ -22,6 +22,8 @@ class BlackJack
     show_score(score: @player.score)
     puts_blank_line
     player_draws
+    puts "ディーラーの2枚目のカードは#{@dealer.puts_second}でした"
+    puts_blank_line
     dealer_draws
     return_result
     puts_last_message

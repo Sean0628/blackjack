@@ -10,7 +10,7 @@ class Dealer
     picked_card = deck.draw_card
     @hands.push(picked_card)
     if @hands.count == 2
-      puts 'ディーラーの２枚目のカードはわかりません'
+      puts 'ディーラーの2枚目のカードはわかりません'
     else
       puts "ディーラーの引いたカードは#{picked_card.show_card}です"
     end
@@ -19,5 +19,9 @@ class Dealer
   def score
     @hands.map { |card| card.point }
           .inject { |total, p| total + p }
+  end
+
+  def puts_second
+    @hands[1].show_card
   end
 end
