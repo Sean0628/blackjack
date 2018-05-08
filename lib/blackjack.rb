@@ -19,10 +19,11 @@ class BlackJack
     puts 'ゲームを開始します'
     puts_blank_line
     init_app
-    show_score(score: @player.score)
     puts_blank_line
+    show_score(score: @player.score)
     player_draws
     puts "ディーラーの2枚目のカードは#{@dealer.puts_second}でした"
+    show_score(who: 'ディーラー', score: @dealer.score)
     puts_blank_line
     dealer_draws
     return_result
@@ -40,6 +41,7 @@ class BlackJack
   def player_burst?(score)
     if score > 21
       puts_burst_message('負け')
+      puts_blank_line
       puts_last_message
       exit
     end
@@ -48,6 +50,7 @@ class BlackJack
   def dealer_burst?(score)
     if score > 21
       puts_burst_message('勝ち')
+      puts_blank_line
       puts_last_message
       exit
     end
@@ -55,6 +58,7 @@ class BlackJack
 
   def player_draws
     loop do
+      puts_blank_line
     puts 'カードを引きますか？(yes/no)'
     input = gets.chomp.downcase
       if input == 'yes'
@@ -80,6 +84,7 @@ class BlackJack
 
   def return_result
     show_score(who: 'ディーラー', score: @dealer.score)
+    puts_blank_line
     if @player.score > @dealer.score
       puts 'あなたの勝ちです'
     elsif @player.score < @dealer.score
@@ -98,7 +103,6 @@ class BlackJack
   end
 
   def puts_last_message
-    puts_blank_line
     puts '---------- Thank you. Bye! ----------'
   end
 
