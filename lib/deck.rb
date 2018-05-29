@@ -1,7 +1,7 @@
 require './lib/card'
 
 class Deck
-  MARKS = %w(ハート スペード ダイヤ クラブ)
+  MARKS = %w[ハート スペード ダイヤ クラブ].freeze
   NUMBERS = [*1..13]
 
   def initialize
@@ -10,9 +10,7 @@ class Deck
   end
 
   def show_deck
-    @cards.each do |card|
-      card.show_card
-    end
+    @cards.each(&:show_card)
   end
 
   def generate_deck

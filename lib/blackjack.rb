@@ -4,7 +4,7 @@ require './lib/dealer'
 
 class BlackJack
   def self.run
-    self.new.run
+    new.run
   end
 
   def initialize
@@ -39,28 +39,26 @@ class BlackJack
   end
 
   def player_burst?(score)
-    if score > 21
-      puts_burst_message('負け')
-      puts_blank_line
-      puts_last_message
-      exit
-    end
+    return unless score > 21
+    puts_burst_message('負け')
+    puts_blank_line
+    puts_last_message
+    exit
   end
 
   def dealer_burst?(score)
-    if score > 21
-      puts_burst_message('勝ち')
-      puts_blank_line
-      puts_last_message
-      exit
-    end
+    return unless score > 21
+    puts_burst_message('勝ち')
+    puts_blank_line
+    puts_last_message
+    exit
   end
 
   def player_draws
     loop do
       puts_blank_line
-    puts 'カードを引きますか？(yes/no)'
-    input = gets.chomp.downcase
+      puts 'カードを引きますか？(yes/no)'
+      input = gets.chomp.downcase
       if input == 'yes'
         @player.draw(@deck)
         show_score(score: @player.score)
@@ -111,6 +109,4 @@ class BlackJack
   end
 end
 
-if $0 == __FILE__
-  BlackJack.run
-end
+BlackJack.run if $PROGRAM_NAME == __FILE__

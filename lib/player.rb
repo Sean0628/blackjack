@@ -13,7 +13,7 @@ class Player
   end
 
   def score
-    @hands.map { |card| card.point }
+    @hands.map(&:point)
           .inject { |total, p| total + p }
   end
 end
